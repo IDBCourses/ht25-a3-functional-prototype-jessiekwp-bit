@@ -22,7 +22,12 @@ function loop() {
 function setup() {
   // Put your event listener code here
 Util.setPositionPixels(window.innerWidth/2, window.innerHeight/2);
-Util.setColour(280,100,80);
+Util.setColour(270,100,80,0.5);
+Util.setRoundedness(0.25);
+Util.setSize(100);
+Util.setRotation(135)
+
+Util.createThing()
 
   window.requestAnimationFrame(loop);
 }
