@@ -45,10 +45,20 @@ Util.setRotation(135, things[2]);
 }
 
 function DarkRubyGoesDown(){
-  Util.setPositionPixels(x, y +=10, things[1]);
+  Util.setPositionPixels(x, y +=5, things[1]);
 }
 
+function DarkRubyGoesUp(){
+  Util.setPositionPixels(x, y -=5, things[1]);
+}
 
+function DarkRubyGoesLeft(){
+  Util.setPositionPixels(x-=5, y, things[1]);
+}
+
+function DarkRubyGoesRight(){
+  Util.setPositionPixels(x+=5, y, things[1]);
+}
 
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
@@ -58,6 +68,27 @@ function setup() {
     if(event.code === 'KeyC'){
       console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
       DarkRubyGoesDown();
+    }
+  })
+
+  document.addEventListener('keydown', (event) => {
+    if(event.code === 'KeyE'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      DarkRubyGoesUp();
+    }
+  })
+
+   document.addEventListener('keydown', (event) => {
+    if(event.code === 'KeyS'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      DarkRubyGoesLeft();
+    }
+  })
+
+   document.addEventListener('keydown', (event) => {
+    if(event.code === 'KeyF'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      DarkRubyGoesRight();
     }
   })
  
