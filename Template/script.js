@@ -69,6 +69,14 @@ function lightRubyGoesDown(){
   Util.setPositionPixels(x2, y2 +=5, things[2]);
 }
 
+function lightRubyGoesLeft(){
+  Util.setPositionPixels(x2 -=5, y2, things[2]);
+}
+
+function lightRubyGoesRight(){
+  Util.setPositionPixels(x2 +=5, y2, things[2]);
+}
+
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   // Put your event listener code here
@@ -109,9 +117,23 @@ function setup() {
   })
 
    document.addEventListener('keydown', (event) => {
-    if(event.code === 'Key,'){
+    if(event.code === 'Comma'){
       console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
       lightRubyGoesDown();
+    }
+  })
+
+   document.addEventListener('keydown', (event) => {
+    if(event.code === 'KeyK'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      lightRubyGoesLeft();
+    }
+  })
+
+  document.addEventListener('keydown', (event) => {
+    if(event.code === 'Semicolon'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      lightRubyGoesRight();
     }
   })
  
