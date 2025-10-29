@@ -18,6 +18,11 @@ Util.setRoundedness(0);
 Util.setSize(100);
 Util.setRotation(135, things[0]);
 
+//things[0] = RedRuby
+//things[1] = DarkRuby
+//things[2] = LightRuby
+
+
 // Code that runs over and over again
 function loop() {
 
@@ -33,15 +38,29 @@ Util.setRoundedness(0, things[2]);
 Util.setSize(100, things[2]);
 Util.setRotation(135, things[2]);
 
+
+Util.setPosition(position, things[1]);
+
+Util.setPosition(position, things[2]);
+
+
+function updateXY(){
+  x = event.x / window.innerWidth;
+  y = event.y / window.innerHeight;
+}
+
   window.requestAnimationFrame(loop);
+}
+
+function DarkRubyGoesUp(){
+  y.position, things[1] -= 1;
+  //timeoutID = setTimeout(grow, 10);
 }
 
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   // Put your event listener code here
-
-
-
+ 
 
 
   window.requestAnimationFrame(loop);
