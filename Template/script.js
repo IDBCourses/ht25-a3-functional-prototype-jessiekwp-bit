@@ -9,32 +9,33 @@ import * as Util from "./util.js";
 let things = [Util.thing, Util.createThing(), Util.createThing()];
 let x = (window.innerWidth*0.2);
 let y = (window.innerHeight*0.2);
+let x2 = (window.innerWidth*0.8);
+let y2 = (window.innerHeight*0.8);
 
 
 // Settings variables should contain all of the "fixed" parts of your programs
 //const thing1x = 43290;
 
-//things[0] = Util.thing;
+//things[0] = Util.thing = redRuby;
 Util.setPositionPixels(window.innerWidth*0.5, window.innerHeight*0.5, things[0]);
 Util.setColour(1,100,50,1, things[0]);
 Util.setRoundedness(0);
 Util.setSize(100);
 Util.setRotation(135, things[0]);
 
-//things[0] = RedRuby
-//things[1] = DarkRuby
-//things[2] = LightRuby
 
 // Code that runs over and over again
 function loop() {
 
+//things[1] = darkRuby
 Util.setPositionPixels(x, y, things[1]);
 Util.setColour(1,100,35,1, things[1]);
 Util.setRoundedness(0, things[1]);
 Util.setSize(100, things[1]);
 Util.setRotation(135, things[1]);
 
-Util.setPositionPixels(window.innerWidth*0.8, window.innerHeight*0.8, things[2]);
+//things[2] = lightRuby
+Util.setPositionPixels(x2, y2, things[2]);
 Util.setColour(1,100,75,1, things[2]);
 Util.setRoundedness(0, things[2]);
 Util.setSize(100, things[2]);
@@ -44,20 +45,28 @@ Util.setRotation(135, things[2]);
   window.requestAnimationFrame(loop);
 }
 
-function DarkRubyGoesDown(){
+function darkRubyGoesDown(){
   Util.setPositionPixels(x, y +=5, things[1]);
 }
 
-function DarkRubyGoesUp(){
+function darkRubyGoesUp(){
   Util.setPositionPixels(x, y -=5, things[1]);
 }
 
-function DarkRubyGoesLeft(){
+function darkRubyGoesLeft(){
   Util.setPositionPixels(x-=5, y, things[1]);
 }
 
-function DarkRubyGoesRight(){
+function darkRubyGoesRight(){
   Util.setPositionPixels(x+=5, y, things[1]);
+}
+
+function lightRubyGoesUp(){
+  Util.setPositionPixels(x2, y2 -=5, things[2]);
+}
+
+function lightRubyGoesDown(){
+  Util.setPositionPixels(x2, y2 +=5, things[2]);
 }
 
 // Setup is run once, at the start of the program. It sets everything up for us!
@@ -67,28 +76,42 @@ function setup() {
   document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyC'){
       console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
-      DarkRubyGoesDown();
+      darkRubyGoesDown();
     }
   })
 
   document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyE'){
       console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
-      DarkRubyGoesUp();
+      darkRubyGoesUp();
     }
   })
 
    document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyS'){
       console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
-      DarkRubyGoesLeft();
+      darkRubyGoesLeft();
     }
   })
 
    document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyF'){
       console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
-      DarkRubyGoesRight();
+      darkRubyGoesRight();
+    }
+  })
+
+  document.addEventListener('keydown', (event) => {
+    if(event.code === 'KeyO'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      lightRubyGoesUp();
+    }
+  })
+
+   document.addEventListener('keydown', (event) => {
+    if(event.code === 'Key,'){
+      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+      lightRubyGoesDown();
     }
   })
  
