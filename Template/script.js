@@ -8,7 +8,7 @@ import * as Util from "./util.js";
 // State variables are the parts of your program that change over time.
 let things = [Util.thing, Util.createThing(), Util.createThing()];
 let x = (window.innerWidth*0.2);
-let y = (window.innerHeight*0);
+let y = (window.innerHeight*0.2);
 let x2 = (window.innerWidth*0.8);
 let y2 = (window.innerHeight*0.8);
 //let hue = 0
@@ -50,6 +50,8 @@ if (y > window.innerHeight){
   y +=0.5;
 }
 
+function gameOver(){
+}
 
   window.requestAnimationFrame(loop);
 }
@@ -86,9 +88,13 @@ function lightRubyGoesRight(){
   Util.setPositionPixels(x2 +=5, y2, things[2]);
 }
 
-function darkRubyChangesColour(){ 
-  Util.setColour(hue += 40,100,30 ,1, things[1]); 
-} 
+function darkRubyRotateClockwise(){
+  Util.setRotation(15, things[1]);
+}
+
+//function darkRubyChangesColour(){ 
+//  Util.setColour(hue += 40,100,30 ,1, things[1]); 
+//} 
 
 
 
@@ -155,13 +161,21 @@ function setup() {
     }
   })
 
-//darkRuby changes coloue
-  document.addEventListener('keydown', (event) => { 
-   if(event.code === 'KeyD'){ 
-     console.log(`Key Down: Code ${event.code} | Key ${event.key}`); 
-     darkRubyChangesColour(); 
-  } 
-  }) 
+//darkRuby changes colour
+  //document.addEventListener('keydown', (event) => { 
+   //if(event.code === 'KeyD'){ 
+     //console.log(`Key Down: Code ${event.code} | Key ${event.key}`); 
+     //darkRubyChangesColour(); 
+  //} 
+  //}) 
+
+  //dark ruby rotates clockwise
+  //document.addEventListener('keydown', (event) => {
+    //if(event.code === 'KeyE + KeyF'){ //wanna swipe
+    //  console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+    //}
+    //darkRubyRotateClockwise();
+  //})
  
 
 
