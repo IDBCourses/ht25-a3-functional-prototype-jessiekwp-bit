@@ -7,40 +7,38 @@ import * as Util from "./util.js";
 
 // State variables are the parts of your program that change over time.
 let player = Util.thing;
-let orange0;
+let orange0 = Util.createThing();
 
 let px = (window.innerWidth*0.5);
 
-
 let oranges = [
-  "orange0", 
-  "orange1", 
-  "orange2",
-  "orange3",
-  "orange4",
-  "orange5",
-  "orange6",
-  "orange7",
-  "orange8",
-  "orange9",
+  {x: 0.2, y:0},
+  {x: 0.5, y:0},
+  {x: 0.7, y:0},
+  {x: 0.3, y:0},
+  {x: 0.9, y:0},
 ];
 
-//let orange = {
-//  hue: 40,
-//  size: 100,
-//}
+for(let i=0; i <5; i++){  //for loop 
+  oranges.push({x: Math.random(), y:0});
+}
 
+let currentOrangeIndex = 0; 
+let currentOrange = oranges[currentOrangeIndex];
+let x = window.innerWidth * currentOrange.x;
+let y = currentOrange.y;
 
+let fallSpeed = 2;
 
 //let gameOver = false; 
-
 
 // Settings variables should contain all of the "fixed" parts of your programs
 
 
-
 // Code that runs over and over again
 function loop() {
+y += fallSpeed; 
+Util.setPositionPixels(x, y, orange0);
 
 
 //if (y > window.innerHeight){
@@ -64,14 +62,13 @@ function setup() {
 Util.setColour(270, 100, 50, 0.5, player);
 Util.setRoundedness(0, player);
 Util.setSize(120,200, player);
-Util.setPositionPixels(window.innerWidth*0.5, window.innerHeight*0.6, player);
+Util.setPositionPixels(px, window.innerHeight*0.6, player);
 
-//properties of orange1
-orange0 = Util.createThing();
+//properties of orange0
 Util.setColour(40, 100, 50, 1, orange0);
 Util.setRoundedness(1, orange0);
-Util.setPositionPixels(window.innerWidth*0.2, window.innerHeight*0, orange0);
 Util.setSize(100, 100, orange0);
+Util.setPositionPixels(x, y, orange0);
 
 
   
