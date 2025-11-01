@@ -13,31 +13,23 @@ import * as Util from "./util.js";
 // State variables are the parts of your program that change over time.
 let player = Util.thing;
 let orange = Util.createThing();
-
 let px = (window.innerWidth*0.5);
+let oranges = [];
+let fallSpeed = 4.5;
 
-let oranges = [
-  {x: 0.2, y:0},
-  {x: 0.9, y:0},
-  {x: 0.5, y:0},
-  {x: 0.3, y:0},
-  {x: 0.7, y:0},
-];
+
+// Settings variables should contain all of the "fixed" parts of your programs
+//const numRandomOranges = 5;
+const orangePositions = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
+
+for(let i=0; i < orangePositions.length; i++){  //for loop 
+  oranges.push({x: orangePositions[i], y:0});
+}
 
 let currentOrangeIndex = 0; 
 let currentOrange = oranges[currentOrangeIndex];
 let x = window.innerWidth * currentOrange.x;
 let y = currentOrange.y;
-
-let fallSpeed = 4.5;
-
-
-// Settings variables should contain all of the "fixed" parts of your programs
-const numRandomOranges = 5;
-
-for(let i=0; i < numRandomOranges ; i++){  //for loop 
-  oranges.push({x: Math.random(), y:0});
-}
 
 // Code that runs over and over again
 function loop() {
