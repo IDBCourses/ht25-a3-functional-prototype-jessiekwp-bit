@@ -24,7 +24,6 @@ let px = (window.innerWidth*0.5);
 
 
 // Settings variables should contain all of the "fixed" parts of your programs
-//const numRandomOranges = 5;
 const orangeXPos = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
 const row = ['KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL'];
 
@@ -37,20 +36,33 @@ let currentOrange = oranges[currentOrangeIndex];
 let x = window.innerWidth * currentOrange.x;
 let y = currentOrange.y;
 
+
 // Code that runs over and over again
 function loop() {
-y += initialFallSpeed; 
-Util.setPositionPixels(x, y, orange);
+ y += initialFallSpeed; 
+ Util.setPositionPixels(x, y, orange);
 
+// get the orange's actual position on screen
+const orangeRect = orange.getBoundingClientRect();
 
-if (y > window.innerHeight /*|| collision = true*/ ){
-  //alert ("Game Over!");
-  resetOrange();
-} 
+// only reset when orange is completely below the screen
+if (orangeRect.top > window.innerHeight /*|| collision = true*/ ){
+//alert ("Game Over!");
+resetOrange();
+}
+
+//if (y > window.innerHeight /*|| collision = true*/ ){
+//alert ("Game Over!");
+//resetOrange();
+//} 
 
   Util.setPositionPixels(px, window.innerHeight *0.85, player)
 
   window.requestAnimationFrame(loop);
+}
+
+function eatOrange(){  
+  Util.setColour(40, 100, 50, 0, orange);
 }
 
 function resetOrange(){
@@ -61,11 +73,23 @@ function resetOrange(){
  //reset orange position on top
  x = window.innerWidth * currentOrange.x;
  y = 0;
+
+ //make orange visible again
+ Util.setColour(40, 100, 50, 1, orange);
 }
 
-function eatOrange(){
-  Util.setColour(40, 100, 50, 0, orange);
+function playerCaughtOrange(){
+const orangeRect = orange.getBoundingClientRect();
+const playerRect = player.getBoundingClientRect();
+
+ return(
+ orangeRect.left >= playerRect.left &&
+ orangeRect.right <= playerRect.right &&
+ orangeRect.top >= playerRect.top &&
+ orangeRect.bottom <= playerRect.bottom
+ );
 }
+
 
 function swipeDirection(){
   let prevIndex = row.indexOf(prevKey);
@@ -100,21 +124,21 @@ function setup() {
 //properties of rectangle (the player)
 Util.setColour(270, 100, 50, 0.5, player);
 Util.setRoundedness(0, player);
-Util.setSize(120,200, player);
+Util.setSize(150,250, player);
 Util.setPositionPixels(px, window.innerHeight * 0.85, player);
 
-//properties of orange0
+//properties of orange
 Util.setColour(40, 100, 50, 1, orange);
 Util.setRoundedness(1, orange);
-Util.setSize(80, 80, orange);
+Util.setSize(70, 70, orange);
 Util.setPositionPixels(x, y, orange);
 
 
 //tap KeyE to eat orange
   document.addEventListener('keydown', (event) => {
-    if(event.code === 'KeyE'){
-      console.log(`Key Down: Code ${event.code} | Key ${event.key}`);
+    if(event.code === 'KeyE' && playerCaughtOrange()){
       eatOrange();
+      resetOrange();
     }
   })
 
@@ -126,12 +150,11 @@ Util.setPositionPixels(x, y, orange);
     prevKey = currKey;
     currKey = event.code;
 
-    console.log(`${prevKey} -> ${currKey}`);
-
     let dir = swipeDirection();
     px += dir*50;
     Util.setPositionPixels(px, window.innerHeight *0.85, player)
   })
+
 
   document.addEventListener('keyup', (event) => {
     timeoutID = setTimeout(resetKeys, 75);
@@ -143,3 +166,24 @@ Util.setPositionPixels(x, y, orange);
 
 setup(); // Always remember to call setup()!
 
+/*function checkEscape(key, door, message) {
+if (hasEscaped) return; // If the player has already escaped, stop checking
+
+
+// Get the position and size of the key and the door
+const keyRect = key.getBoundingClientRect();
+const doorRect = door.getBoundingClientRect();
+
+
+// Check if the ENTIRE key is inside the door
+ const isCompletelyInside =
+ keyRect.left >= doorRect.left &&
+ keyRect.right <= doorRect.right &&
+ keyRect.top >= doorRect.top &&
+ keyRect.bottom <= doorRect.bottom;
+
+
+// If the key is fully inside the door
+ if (isCompletelyInside) {
+ hasEscaped = true; // Mark that the escape has happened
+ door.style.backgroundColor = "white";*/
