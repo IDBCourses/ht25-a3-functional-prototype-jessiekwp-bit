@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "ht25-a3-functional-prototype-jessiekwp-bit"
+			"path": ".."
 		},
 		{
-			"path": "../../Visual Studio Code folders/Keyboard with SWIPE"
+			"path": "../../../../Visual Studio Code folders/Keyboard with SWIPE"
+		},
+		{
+			"path": "../../../../Visual Studio Code folders/Group A3 modelling exam"
 		}
 	],
 	"settings": {

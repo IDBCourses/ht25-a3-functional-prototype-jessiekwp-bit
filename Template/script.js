@@ -20,6 +20,8 @@ let prevKey = null;
 let currKey = null;
 let timeoutID = null;
 let px = (window.innerWidth*0.5);
+let timeLeft = 45; //seconds
+let timerInterval; //store interval ID
 
 
 //CONST VARIABLE//
@@ -58,7 +60,7 @@ resetOrange();
 //resetOrange();
 //} 
 
-  Util.setPositionPixels(px, window.innerHeight *0.85, player)
+  Util.setPositionPixels(px, window.innerHeight *0.65, player)
 
   window.requestAnimationFrame(loop);
 }
@@ -127,20 +129,20 @@ function resetKeys(){
 function setup() {
   // Put your event listener code here
 
-//properties of rectangle (the player)
+//properties of player (the purple rectangle)
 Util.setColour(270, 100, 50, 0.5, player);
 Util.setRoundedness(0, player);
-Util.setSize(180,280, player);
-Util.setPositionPixels(px, window.innerHeight * 0.85, player);
+Util.setSize(180,300, player);
+//Util.setPositionPixels(px, window.innerHeight *0.85, player);
 
 //properties of orange
 Util.setColour(40, 100, 50, 1, orange);
 Util.setRoundedness(1, orange);
-Util.setSize(70, 70, orange);
+Util.setSize(80, 80, orange);
 Util.setPositionPixels(x, y, orange);
 
 
-//tap KeyE to eat orange
+  //tap KeyE to eat orange
   document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyE' && playerCaughtOrange()){
       eatOrange();
@@ -157,13 +159,28 @@ Util.setPositionPixels(x, y, orange);
 
     let dir = swipeDirection();
     px += dir*50;
-    Util.setPositionPixels(px, window.innerHeight *0.85, player)
+    Util.setPositionPixels(px, window.innerHeight *0.6, player)
   })
 
-
+//
   document.addEventListener('keyup', (event) => {
     timeoutID = setTimeout(resetKeys, 75);
   })
+
+// start countdown timer
+timerInterval = setInterval(() =>{
+  timeLeft --;
+  document.getElementById("timer").textContent = `Time left: ${timeLeft} seconds`;
+
+  if (timeLeft <=0){
+    clearInterval(timerInterval);
+    gameOver();
+  }
+}, 1000);
+
+function gameOver(){
+  alert("Game Over! Try again! :D ")
+}
   
 
   window.requestAnimationFrame(loop);
