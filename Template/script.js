@@ -15,37 +15,37 @@ let player = Util.thing;
 let orange = Util.createThing();
 let px = (window.innerWidth*0.5);
 let oranges = [];
-let fallSpeed = 4.5;
+let initialFallSpeed = 2;
 
 
 // Settings variables should contain all of the "fixed" parts of your programs
 //const numRandomOranges = 5;
-const orangePositions = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
+const orangeXPos = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
 
-for(let i=0; i < orangePositions.length; i++){  //for loop 
-  oranges.push({x: orangePositions[i], y:0});
+for(let i=0; i < orangeXPos.length; i++){  //for loop 
+  oranges.push({x: orangeXPos[i], y:0});
 }
 
-let currentOrangeIndex = 0; 
+let currentOrangeIndex = 0; //can simplify these 4 lines?
 let currentOrange = oranges[currentOrangeIndex];
 let x = window.innerWidth * currentOrange.x;
 let y = currentOrange.y;
 
 // Code that runs over and over again
 function loop() {
-y += fallSpeed; 
+y += initialFallSpeed; 
 Util.setPositionPixels(x, y, orange);
 
 
 if (y > window.innerHeight /*|| collision = true*/ ){
   //alert ("Game Over!");
-  addOrange();
+  resetOrange();
 } 
 
   window.requestAnimationFrame(loop);
 }
 
-function addOrange(){
+function resetOrange(){
   // pick a random orange position from array
  currentOrangeIndex = Math.floor(Math.random()* oranges.length);
  currentOrange = oranges[currentOrangeIndex];
@@ -85,7 +85,7 @@ Util.setPositionPixels(x, y, orange);
     }
   })
 
-  //swipe the keyboard row to move the player to left and right
+  //swipe the keyboard row(KeyA-KeyL) to move the player left and right
     //document.addEventListener()
   
 
