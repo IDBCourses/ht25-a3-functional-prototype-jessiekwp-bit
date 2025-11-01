@@ -14,7 +14,7 @@ import * as Util from "./util.js";
 let player = Util.thing;
 let orange = Util.createThing();
 let oranges = [];
-let initialFallSpeed = 2;
+let fallSpeed = 2;
 
 let prevKey = null;
 let currKey = null;
@@ -41,7 +41,7 @@ let y = currentOrange.y;
 //FUNCTION LOOP//
 // Code that runs over and over again
 function loop() {
- y += initialFallSpeed; 
+ y += fallSpeed; 
  Util.setPositionPixels(x, y, orange);
 
 // get the orange's actual position on screen
@@ -78,17 +78,20 @@ function resetOrange(){
 
  //make orange visible again
  Util.setColour(40, 100, 50, 1, orange);
+
+ //increase the speed of every new orange
+ fallSpeed += 0.1;
 }
 
 function playerCaughtOrange(){
-const orangeRect = orange.getBoundingClientRect();
-const playerRect = player.getBoundingClientRect();
+ const orangeRect = orange.getBoundingClientRect();
+ const playerRect = player.getBoundingClientRect();
 
  return(
- orangeRect.left >= playerRect.left &&
- orangeRect.right <= playerRect.right &&
- orangeRect.top >= playerRect.top &&
- orangeRect.bottom <= playerRect.bottom
+  orangeRect.left >= playerRect.left &&
+  orangeRect.right <= playerRect.right &&
+  orangeRect.top >= playerRect.top &&
+  orangeRect.bottom <= playerRect.bottom
  );
 }
 
@@ -127,7 +130,7 @@ function setup() {
 //properties of rectangle (the player)
 Util.setColour(270, 100, 50, 0.5, player);
 Util.setRoundedness(0, player);
-Util.setSize(150,250, player);
+Util.setSize(180,280, player);
 Util.setPositionPixels(px, window.innerHeight * 0.85, player);
 
 //properties of orange
