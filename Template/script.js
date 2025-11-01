@@ -13,7 +13,6 @@ import * as Util from "./util.js";
 // State variables are the parts of your program that change over time.
 let player = Util.thing;
 let orange = Util.createThing();
-
 let oranges = [];
 let initialFallSpeed = 2;
 
@@ -23,10 +22,12 @@ let timeoutID = null;
 let px = (window.innerWidth*0.5);
 
 
+//CONST VARIABLE//
 // Settings variables should contain all of the "fixed" parts of your programs
 const orangeXPos = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
 const row = ['KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL'];
 
+// Create an array of orange objects with starting positions
 for(let i=0; i < orangeXPos.length; i++){  //for loop 
   oranges.push({x: orangeXPos[i], y:0});
 }
@@ -37,6 +38,7 @@ let x = window.innerWidth * currentOrange.x;
 let y = currentOrange.y;
 
 
+//FUNCTION LOOP//
 // Code that runs over and over again
 function loop() {
  y += initialFallSpeed; 
@@ -117,6 +119,7 @@ function resetKeys(){
   console.log('Reset key presses.');
 }
 
+//FUNCTION SETUP//
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   // Put your event listener code here
@@ -142,8 +145,7 @@ Util.setPositionPixels(x, y, orange);
     }
   })
 
-  //swipe the keyboard row(KeyA-KeyL) to move the player left and right
-    //document.addEventListener()
+  //swipe the row(KeyA-KeyL) to move the player left and right
   document.addEventListener('keydown', (event) => {
     clearTimeout(timeoutID);
 
@@ -165,25 +167,3 @@ Util.setPositionPixels(x, y, orange);
 }
 
 setup(); // Always remember to call setup()!
-
-/*function checkEscape(key, door, message) {
-if (hasEscaped) return; // If the player has already escaped, stop checking
-
-
-// Get the position and size of the key and the door
-const keyRect = key.getBoundingClientRect();
-const doorRect = door.getBoundingClientRect();
-
-
-// Check if the ENTIRE key is inside the door
- const isCompletelyInside =
- keyRect.left >= doorRect.left &&
- keyRect.right <= doorRect.right &&
- keyRect.top >= doorRect.top &&
- keyRect.bottom <= doorRect.bottom;
-
-
-// If the key is fully inside the door
- if (isCompletelyInside) {
- hasEscaped = true; // Mark that the escape has happened
- door.style.backgroundColor = "white";*/
