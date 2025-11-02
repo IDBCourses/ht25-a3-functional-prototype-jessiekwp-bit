@@ -141,8 +141,8 @@ function winGame(){
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
 
-//properties of player (the purple rectangle)
-Util.setColour(270, 100, 50, 0.5, player);
+//properties of player
+Util.setColour(0, 0, 100, 0, player);
 Util.setRoundedness(0, player);
 Util.setSize(160,300, player);
 

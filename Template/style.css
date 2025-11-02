@@ -26,3 +26,13 @@ body {
     border-radius: 100%;
     background-color: orange;
 }
+
+/*add the image of the eating baby*/
+#thing0 {
+    background-image: url('eatingbaby.png');
+    background-size: contain; /*image fits inside the box*/
+    background-repeat: no-repeat; /*show the image only once*/
+    background-position: center; /*center the image*/
+    background-color: transparent;
+    border-radius: 0;
+}
