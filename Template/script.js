@@ -25,6 +25,7 @@ let px = (window.innerWidth*0.5);
 let timeLeft = 30; //seconds
 let timerInterval; //store interval ID
 let nOranges = 0;
+let isGameOver = false;
 
 
 //CONST VARIABLE//
@@ -47,26 +48,22 @@ let y = currentOrange.y;
 //FUNCTION LOOP//
 // Code that runs over and over again
 function loop() {
- y += fallSpeed; 
+  y += fallSpeed; 
  Util.setPositionPixels(x, y, orange);
 
 // get the orange's actual position on screen
 const orangeRect = orange.getBoundingClientRect();
 
 // only reset when orange is completely below the screen
-if (orangeRect.top > window.innerHeight /*|| collision = true*/ ){
-//alert ("Game Over!");
+if(orangeRect.top > window.innerHeight && !isGameOver ){
 resetOrange();
 }
 
-//if (y > window.innerHeight /*|| collision = true*/ ){
-//alert ("Game Over!");
-//resetOrange();
-//} 
-
   Util.setPositionPixels(px, window.innerHeight *0.65, player)
 
-  window.requestAnimationFrame(loop);
+  if(!isGameOver){
+    window.requestAnimationFrame(loop);
+  }
 }
 
 function eatOrange(){  
@@ -144,6 +141,7 @@ Util.setSize(80, 80, orange);
 Util.setPositionPixels(x, y, orange);
 
 function gameOver(){
+  isGameOver = true;
   alert("Game Over! Try again! :)🍊")
 }
 
@@ -178,7 +176,7 @@ function gameOver(){
 
 // start countdown timer
   timerInterval = setInterval(() =>{
-  timeLeft --;
+  timeLeft --; //countdown every 1 second
   document.getElementById("timer").textContent = `🧡Goal: Eat 10 oranges 🍊! Time left: ${timeLeft} `;
 
   if(timeLeft <=0){
@@ -190,7 +188,9 @@ function gameOver(){
 
 
 function winGame(){
-  alert("🍊🍊🍊🍊You win! You are the best 'Orange Catcher'! 🍊🍊🍊🍊")
+  alert("🍊🍊🍊🍊You win! You are the best 'Orange Catcher'! 🍊🍊🍊🍊") //show winning message
+  clearInterval(timerInterval); //stop the countdown
+  isGameOver = true; //stop the loop of falling orange
 }  
 
   window.requestAnimationFrame(loop);
