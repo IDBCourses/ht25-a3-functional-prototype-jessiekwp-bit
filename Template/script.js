@@ -3,9 +3,11 @@
  *
  */
 
-//Game: "Orange Catcher"
-//Designer: Wan Pui Kwok
+//Game: "Orange Catcher 🍊"
+//Developer: Wan Pui Kwok (Jessie)
 //Rules: 
+//The player(purple rectangle) needs to completely catch then eat the oranges.
+//The orange has to be completely inside the player.  
 
 
 import * as Util from "./util.js";
@@ -68,11 +70,11 @@ resetOrange();
 }
 
 function eatOrange(){  
-  Util.setColour(40, 100, 50, 0, orange);
+  Util.setColour(35, 100, 50, 0, orange);
 } //the opacity is changed to 0 because the orange is "eaten" (becomes invisible)
 
 function resetOrange(){
-  // pick a random orange position from array
+// pick a random orange position from array
  currentOrangeIndex = Math.floor(Math.random()* oranges.length);
  currentOrange = oranges[currentOrangeIndex];
 
@@ -81,7 +83,7 @@ function resetOrange(){
  y = 0;
 
  //make orange visible again
- Util.setColour(40, 100, 50, 1, orange);
+ Util.setColour(35, 100, 50, 1, orange);
 
  //increase the speed of every new orange
  fallSpeed += 0.15;
@@ -98,7 +100,6 @@ function playerCaughtOrange(){
   orangeRect.bottom <= playerRect.bottom
  );
 }
-
 
 function swipeDirection(){
   let prevIndex = row.indexOf(prevKey);
@@ -155,6 +156,7 @@ function gameOver(){
       resetOrange();
       if(nOranges === 10){
         setTimeout(winGame, 100); 
+        //create 0.1 second delay so "10" can be displayed when win game
       }
     }
   })
@@ -162,13 +164,11 @@ function gameOver(){
   //swipe the row(KeyA-KeyL) to move the player left and right
   document.addEventListener('keydown', (event) => {
     clearTimeout(timeoutID);
-
     prevKey = currKey;
     currKey = event.code;
-
     let dir = swipeDirection();
     px += dir*50;
-    Util.setPositionPixels(px, window.innerHeight *0.6, player)
+    Util.setPositionPixels(px, window.innerHeight *0.6, player);
   })
 
 //
@@ -183,7 +183,8 @@ function gameOver(){
 
   if(timeLeft <=0){
     clearInterval(timerInterval);
-    gameOver();
+    setTimeout(gameOver, 100);
+    //create 0.1 second delay the time left displayed is accurate
   }
 }, 1000); // counting down every 1 second
 
