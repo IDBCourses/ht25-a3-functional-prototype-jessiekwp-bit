@@ -22,12 +22,14 @@ let timeoutID = null;
 let px = (window.innerWidth*0.5);
 let timeLeft = 30; //seconds
 let timerInterval; //store interval ID
+let nOranges = 0;
 
 
 //CONST VARIABLE//
 // Settings variables should contain all of the "fixed" parts of your programs
 const orangeXPos = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
 const row = ['KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL'];
+const orangesDisplay = document.getElementById("orangesDisplay");
 
 // Create an array of orange objects with starting positions
 for(let i=0; i < orangeXPos.length; i++){  //for loop 
@@ -67,7 +69,7 @@ resetOrange();
 
 function eatOrange(){  
   Util.setColour(40, 100, 50, 0, orange);
-}
+} //the opacity is changed to 0 because the orange is "eaten" (becomes invisible)
 
 function resetOrange(){
   // pick a random orange position from array
@@ -82,7 +84,7 @@ function resetOrange(){
  Util.setColour(40, 100, 50, 1, orange);
 
  //increase the speed of every new orange
- fallSpeed += 0.2;
+ fallSpeed += 0.15;
 }
 
 function playerCaughtOrange(){
@@ -132,7 +134,7 @@ function setup() {
 //properties of player (the purple rectangle)
 Util.setColour(270, 100, 50, 0.5, player);
 Util.setRoundedness(0, player);
-Util.setSize(180,300, player);
+Util.setSize(160,300, player);
 
 //properties of orange
 Util.setColour(35, 100, 50, 1, orange);
@@ -140,12 +142,20 @@ Util.setRoundedness(1, orange);
 Util.setSize(80, 80, orange);
 Util.setPositionPixels(x, y, orange);
 
+function gameOver(){
+  alert("Game Over! Try again! :)🍊")
+}
 
   //tap KeyE to eat orange
   document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyE' && playerCaughtOrange()){
       eatOrange();
+      nOranges ++;
+      orangesDisplay.textContent = `(っ˘ڡ˘ς) Eaten oranges: ${nOranges} 🍊`;
       resetOrange();
+      if(nOranges === 10){
+        setTimeout(winGame, 100); 
+      }
     }
   })
 
@@ -169,24 +179,18 @@ Util.setPositionPixels(x, y, orange);
 // start countdown timer
   timerInterval = setInterval(() =>{
   timeLeft --;
-  document.getElementById("timer").textContent = `🧡 Eat at least 10 oranges 🍊! Time left: ${timeLeft} `;
+  document.getElementById("timer").textContent = `🧡Goal: Eat 10 oranges 🍊! Time left: ${timeLeft} `;
 
-  if (timeLeft <=0){
+  if(timeLeft <=0){
     clearInterval(timerInterval);
     gameOver();
   }
 }, 1000); // counting down every 1 second
 
 
-
 function winGame(){
-  alert("You win! Enjoy the oranges that you caught! :D")
-}
-
-function gameOver(){
-  alert("Game Over! Try again! :)")
-}
-  
+  alert("🍊🍊🍊🍊You win! You are the best 'Orange Catcher'! 🍊🍊🍊🍊")
+}  
 
   window.requestAnimationFrame(loop);
 }
