@@ -6,8 +6,7 @@
 //Game: "Orange Catcher 🍊"
 //Developer: Wan Pui Kwok
 //Rules: 
-//The player(rectangle) needs to completely catch then eat the oranges.
-//The orange has to be completely inside the player.  
+//Goal: The player needs to catch and eat 10 oranges within 20 seconds.  
 
 
 import * as Util from "./util.js";
@@ -22,7 +21,7 @@ let prevKey = null;
 let currKey = null;
 let timeoutID = null;
 let px = (window.innerWidth*0.5);
-let timeLeft = 30; //seconds
+let timeLeft = 20; //seconds
 let timerInterval; //store interval ID
 let nOranges = 0;
 let isGameOver = false;
@@ -44,8 +43,8 @@ for(let i=0; i < orangeXPos.length; i++){
 }
 //for loop: use the x-positions to create orange objects and add them to the oranges array
 
-let currentOrangeIndex = 0; //can simplify these 4 lines?
-let currentOrange = oranges[currentOrangeIndex];
+let currentOrangeIndex = 0; //start with the first orange
+let currentOrange = oranges[currentOrangeIndex]; //pick that orange
 let x = window.innerWidth * currentOrange.x;
 let y = currentOrange.y;
 
@@ -86,7 +85,7 @@ function resetOrange(){
  Util.setColour(35, 100, 50, 1, orange);
   //opacity:1 -> make orange visible again
 
- fallSpeed += 0.15;  //increase the speed of every new orange
+ fallSpeed += 0.25;  //increase the speed of every new orange
 }
 
 function collision(){
@@ -94,11 +93,11 @@ function collision(){
  const playerRect = player.getBoundingClientRect();
 
  return(
-  orangeRect.left >= playerRect.left &&
-  orangeRect.right <= playerRect.right &&
-  orangeRect.top >= playerRect.top &&
-  orangeRect.bottom <= playerRect.bottom
- );
+  orangeRect.right >= playerRect.left &&
+  orangeRect.left <= playerRect.right &&
+  orangeRect.bottom >= playerRect.top &&
+  orangeRect.top <= playerRect.bottom
+ );//If the orange is anywhere inside the player, the player can eat the orange.
 }
 
 function swipeDirection(){
@@ -124,18 +123,17 @@ function resetKeys(){
   currKey = null;
 }
 
-function gameOver(){
-  isGameOver = true;
-  clearInterval(timerInterval); //stop the timer immediately
-  alert("Game Over! Try again! :)🍊")
-}
-
 function winGame(){
   alert("🍊🍊🍊🍊You win! You are the best 'Orange Catcher'! 🍊🍊🍊🍊") //show winning message
-  clearInterval(timerInterval); //stop the countdown
+  clearInterval(timerInterval); //stop the countdown after win game
   isGameOver = true; //stop the loop of falling orange
 }  
 
+function gameOver(){
+  clearInterval(timerInterval); //stop the timer after game over
+  isGameOver = true;
+  alert("Game Over! Eat again! :)🍊")
+}
 
 //FUNCTION SETUP//
 // Setup is run once, at the start of the program. It sets everything up for us!
@@ -149,7 +147,7 @@ Util.setSize(160,300, player);
 //properties of orange
 Util.setColour(35, 100, 50, 1, orange);
 Util.setRoundedness(1, orange);
-Util.setSize(80, 80, orange);
+Util.setSize(55, 55, orange);
 Util.setPositionPixels(x, y, orange);
 
 
@@ -157,14 +155,14 @@ Util.setPositionPixels(x, y, orange);
   document.addEventListener('keydown', (event) => {
     if(event.code === 'KeyE' && collision()){
       if(isGameOver) return;
-      eatOrange(); //orange can be eaten when orange is completely inside player and KeyE is tapped
+      eatOrange(); //orange can be eaten when orange collides with player and KeyE is tapped
       nOranges ++; //number of oranges is increased by 1
       orangesDisplay.textContent = `(っ˘ڡ˘ς) Eaten oranges: ${nOranges} 🍊`;
       //text displayed at top left corner: show the number of eaten oranges
 
       resetOrange(); //a new orange is being launched after the previous one is being eaten
       if(nOranges === 10){ 
-        setTimeout(winGame, 100); //Winning condition: has eaten 10 oranges. The game ends there.
+        setTimeout(winGame, 100); //Winning condition: Eat 10 oranges. The game ends there.
         //create 0.1 second delay so "10" can be displayed when win game
       }
     }
@@ -178,7 +176,7 @@ Util.setPositionPixels(x, y, orange);
     currKey = event.code;
     let dir = swipeDirection();
     px += dir*50;
-    Util.setPositionPixels(px, window.innerHeight *0.6, player);
+  
   })
 
 //
@@ -192,8 +190,7 @@ Util.setPositionPixels(x, y, orange);
   timeLeft --; //countdown every 1 second
   document.getElementById("timer").textContent = `🧡Goal: Eat 10 oranges 🍊! Time left: ${timeLeft} `;
 
-  if(timeLeft <=0){
-    clearInterval(timerInterval);
+  if(timeLeft <=0 && nOranges <10){ //If player already has 10 oranges, skip gameOver completely
     setTimeout(gameOver, 100);
     //create 0.1 second delay so the time left displayed is accurate
   }
