@@ -187,7 +187,7 @@ Util.setPositionPixels(x, y, orange);
 // start countdown timer
   timerInterval = setInterval(() =>{
   timeLeft --; //countdown every 1 second
-  document.getElementById("timer").textContent = `🧡Goal: Eat 10 oranges in 20 seconds🍊! Time left: ${timeLeft} `;
+  document.getElementById("timer").textContent = `🧡Goal: Eat 10 oranges in 20 seconds 🍊! Time left: ${timeLeft} `;
 
   if(timeLeft <=0 && nOranges <10){ //If player already has 10 oranges, skip gameOver completely
     setTimeout(gameOver, 100);
