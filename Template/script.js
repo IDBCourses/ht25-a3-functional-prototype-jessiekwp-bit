@@ -5,9 +5,8 @@
 
 //Game: "Orange Catcher 🍊"
 //Developer: Wan Pui Kwok
-//Rules: 
-//Goal: The player needs to catch and eat 10 oranges within 20 seconds.  
-
+//ideal screen size: 
+  
 
 import * as Util from "./util.js";
 
