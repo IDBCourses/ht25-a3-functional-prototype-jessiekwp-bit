@@ -18,6 +18,7 @@ Eat 10 oranges within 20 seconds!
 # Game characteristics
 1. Oranges fall from different positions from the sky randomly
 2. The speed of falling oranges is increased every time
+3. Check the countdown timer and the number of eaten oranges at the top left corner of the window
 
 
 # Good Luck :O

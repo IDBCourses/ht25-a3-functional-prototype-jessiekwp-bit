@@ -1,13 +1,12 @@
 /*
  * IDB Programming: Code Playground
  *
- */
-
-//Game: "Orange Catcher 🍊"
-//Developer: Wan Pui Kwok
-//ideal screen size: 
+Game: "Orange Catcher 🍊"
+Developer: Wan Pui Kwok
+Game rules: refer to README
+My screen size: ___________ (Macbook Pro)
+("Eating experience" is better with this screen size instead of a big screen)*/
   
-
 import * as Util from "./util.js";
 
 // State variables are the parts of your program that change over time.
@@ -26,7 +25,7 @@ let nOranges = 0;
 let isGameOver = false;
 
 
-//CONST VARIABLE//
+//CONSTANT VARIABLE//
 // Settings variables should contain all of the "fixed" parts of your programs
 
 const orangeXPos = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];
