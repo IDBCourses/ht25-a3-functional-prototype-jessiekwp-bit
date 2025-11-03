@@ -3,9 +3,8 @@
  *
 Game: "Orange Catcher 🍊"
 Developer: Wan Pui Kwok
-Game rules: refer to README
-My screen size: ___________ (Macbook Pro)
-("Eating experience" is better with this screen size instead of a big screen)*/
+Game rules: Please refer to README
+*/
   
 import * as Util from "./util.js";
 
@@ -19,13 +18,15 @@ let prevKey = null;
 let currKey = null;
 let timeoutID = null;
 let px = (window.innerWidth*0.5);
+let py = window.innerHeight
+console.log(window.innerWidth, window.innerHeight);
 let timeLeft = 20; //seconds
 let timerInterval; //store interval ID
 let nOranges = 0;
 let isGameOver = false;
 
 
-//CONSTANT VARIABLE//
+//CONSTANT VARIABLES//
 // Settings variables should contain all of the "fixed" parts of your programs
 
 const orangeXPos = [0.2, 0.9, 0.5, 0.3, 0.7, 0.1, 0.8, 0.4, 0.1, 0.6];

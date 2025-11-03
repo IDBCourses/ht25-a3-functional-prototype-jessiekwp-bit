@@ -4,22 +4,25 @@
 Developed by Wan Pui Kwok 
 ![Screenshot of the game](2_playerandorange.jpeg)
 
-
 # Goal
 Eat 10 oranges within 20 seconds!
 
-# How to play
+# How To Play
 `A` `S` `D` `F` `G` `H` `J` `K` `L` 
 - Swipe the row with 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK' and 'KeyL' to left and right to control the player's movement
 
 `E` 
 - Tap 'KeyE' to eat the orange when the orange overlaps the player
 
-# Game characteristics
-1. Oranges fall from different positions from the sky randomly
+# Game Characteristics
+1. Oranges fall from different positions in the sky randomly
 2. The speed of falling oranges is increased every time
 3. Check the countdown timer and the number of eaten oranges at the top left corner of the window
 
+# Recommended Browser Window Size
+- 957 pixels x 857 pixels (14-inch Macbook Pro)
+- Your 'eating experience' is better with this window size instead of a very big window. 
+- If you can’t eat enough oranges, try to shrink your window to improve your 'eating experience'. :)
 
 # Good Luck :O
 I hope you can eat 10 oranges! 🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊
