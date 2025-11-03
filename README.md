@@ -1,6 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/2Ckaj58x)
 
 # 'Orange Catcher🍊' Game
+![Screenshot of the game](1_orangecatcher.png)
 Developed by Wan Pui Kwok
 
 # Goal
@@ -18,5 +19,5 @@ Eat 10 oranges within 20 seconds!
 2. The speed of falling oranges is increased every time
 
 
-# Good Luck :)
+# Good Luck :O
 I hope you can eat 10 oranges! 🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊
