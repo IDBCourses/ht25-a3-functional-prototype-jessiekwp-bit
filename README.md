@@ -1,4 +1,27 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/2Ckaj58x)
+
+# Game: 'Orange Catcher🍊'
+Developed by Wan Pui Kwok
+
+# Goal
+Eat 10 oranges within 20 seconds!
+
+# Controls
+`A` `S` `D` `F` `G` `H` `J` `K` `L` 
+- Swipe the row with 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK' and 'KeyL' to left and right to control the player's movement
+
+`E` 
+- Tap 'KeyE' to eat the orange when it overlaps the player
+
+# Game characteristics
+1. Oranges fall from different positions from the sky randomly
+2. The speed of falling oranges is increased every time
+
+
+# Good Luck
+I hope you can eat a lot of oranges! 🍊🍊🍊🍊🍊🍊🍊🍊🍊🍊
+
+
 # CodePlayground
 
 Simple browser playground for animating a shape on the page using utilities from `Animations/util.js`.

@@ -12,7 +12,7 @@
 import * as Util from "./util.js";
 
 // State variables are the parts of your program that change over time.
-let player = Util.thing;
+let player = Util.thing; //player is the girl
 let orange = Util.createThing();
 let oranges = [];
 let fallSpeed = 2;
@@ -56,11 +56,11 @@ function loop() {
  Util.setPositionPixels(x, y, orange);
 
 const orangeRect = orange.getBoundingClientRect();
-// get the orange's actual position on screen
+//get the orange's actual position on screen
 
 if(orangeRect.top > window.innerHeight && !isGameOver ){
 resetOrange();
-} // reset orange when it goes below the screen and when game is not over yet
+} //reset orange when it goes below the screen and when game is not over yet
 
   Util.setPositionPixels(px, window.innerHeight *0.65, player)
 
@@ -76,7 +76,7 @@ function eatOrange(){
 function resetOrange(){
  currentOrangeIndex = Math.floor(Math.random()* oranges.length);
  currentOrange = oranges[currentOrangeIndex];
- // pick a random orange position from array
+ //pick a random orange position from array
 
  x = window.innerWidth * currentOrange.x;
  y = 0;
@@ -102,8 +102,7 @@ function collision(){
 
 function swipeDirection(){
   let prevIndex = row.indexOf(prevKey);
-  let currIndex = row.indexOf(currKey);
-
+  let currIndex = row.indexOf(currKey); 
 
   if( currIndex < 0 || prevIndex < 0){
     return 0;
@@ -115,7 +114,7 @@ function swipeDirection(){
     } else {
       return diffIndex;
     }
-  }
+  } 
 }
 
 function resetKeys(){
@@ -132,7 +131,7 @@ function winGame(){
 function gameOver(){
   clearInterval(timerInterval); //stop the timer after game over
   isGameOver = true;
-  alert("Game Over! Eat again! :)🍊")
+  alert("Game over! Eat again! :)🍊")
 }
 
 //FUNCTION SETUP//
