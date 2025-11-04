@@ -43,8 +43,8 @@ for(let i=0; i < orangeXPos.length; i++){
 let currentOrangeIndex = Math.floor(Math.random()* oranges.length); 
 //the first orange starts at a random x-position every time
 let currentOrange = oranges[currentOrangeIndex]; //pick that orange
-let x = window.innerWidth * currentOrange.x; //x-axis of each random orange
-let y = currentOrange.y; //y-axis of each random orange, which is always 0
+let x = window.innerWidth * currentOrange.x; //x-position of each random orange
+let y = currentOrange.y; //y-position of each random orange, which is always 0
 
 
 //FUNCTION LOOP//
@@ -71,7 +71,7 @@ resetOrange();
 
 function eatOrange(){  
   Util.setColour(35, 100, 50, 0, orange);
-} //the opacity is changed to 0 because the orange is "eaten" (becomes invisible)
+} //opacity is changed to 0 because the orange is "eaten" (becomes invisible)
 
 function resetOrange(){
  currentOrangeIndex = Math.floor(Math.random()* oranges.length);
@@ -105,7 +105,7 @@ function swipeDirection(){
   let prevIndex = row.indexOf(prevKey);
   let currIndex = row.indexOf(currKey); 
   if(currIndex < 0 || prevIndex < 0){
-    return 0; //nothing happens if pressing any key outside the row of KeyA-KeyL
+    return 0; //nothing happens if pressing any key outside the row of KeyA-KeyL. 0 means invalid
   } else {
     let diffIndex = currIndex - prevIndex;
 
@@ -135,12 +135,13 @@ function gameOver(){
   alert("Game over! Eat again! :)🍊") //show the lose message
 }
 
+
 //FUNCTION SETUP//
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup(){
 
 //properties of player
-Util.setColour(0, 0, 100, 0, player);
+Util.setColour(0, 0, 100, 0, player); //it is transparent so only the image of player(the girl) is visible
 Util.setRoundedness(0, player);
 Util.setSize(160,300, player);
 
@@ -162,7 +163,7 @@ Util.setPositionPixels(x, y, orange);
 
       resetOrange(); //a new orange is being launched after the previous one is being 'eaten'
       if(nOranges === 10){ 
-        setTimeout(winGame, 100); //xinning condition: Eat 10 oranges. The game ends there.
+        setTimeout(winGame, 100); //winning condition: Eat 10 oranges. The game ends there.
         //create 0.1 second delay so "10" can be displayed when win game
       }
     }
@@ -189,12 +190,13 @@ Util.setPositionPixels(x, y, orange);
   timerInterval = setInterval(() =>{
   timeLeft --; //countdown every second
   document.getElementById("timer").textContent = `🧡Goal: Eat 10 oranges in 20 seconds 🍊! Time left: ${timeLeft} `;
+  //text displayed at top left corner: goal and countdown
   
   if(timeLeft <=0 && nOranges <10){ //If player already has 10 oranges, skip gameOver completely
     setTimeout(gameOver, 100);
     //create 0.1 second delay so the time left displayed is accurate
   }
-}, 1000); // the interval is 1 second - counting down every 1 second
+}, 1000); // the interval is 1 second - counting down every second
 
   window.requestAnimationFrame(loop);
 }
