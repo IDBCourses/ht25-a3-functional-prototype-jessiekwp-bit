@@ -41,7 +41,9 @@ for(let i=0; i < orangeXPos.length; i++){
 //for loop: use the x-positions to create orange objects and add them to the oranges array
 
 let currentOrangeIndex = Math.floor(Math.random()* oranges.length); 
-//the first orange starts at a random x-position every time
+/*the first orange starts at a random x-position every time
+Math.randon() gives a random number between 0-1, then times the oranges' length to get a bigger number
+Math.floor rounds the number down to generate an integer index between 0-9*/
 let currentOrange = oranges[currentOrangeIndex]; //pick that orange
 let x = window.innerWidth * currentOrange.x; //x-position of each random orange
 let y = currentOrange.y; //y-position of each random orange, which is always 0
