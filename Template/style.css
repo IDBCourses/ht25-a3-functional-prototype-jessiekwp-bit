@@ -27,7 +27,7 @@ body {
     background-color: orange;
 }
 
-/*add the image of the eating baby*/
+/*add the image of the player*/
 #thing0 {
     background-image: url('eatingbaby.png');
     background-size: contain; /*image fits inside the box*/
